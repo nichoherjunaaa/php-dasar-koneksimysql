@@ -1,24 +1,40 @@
 <?php
 session_start();
-
-// Data username dan password admin (bisa kamu simpan di database kalau mau lebih aman)
-$admin_username = "admin";
-$admin_password = "admin123"; // password boleh kamu ubah
+include "../connection.php"; // koneksi ke database
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Cek apakah username dan password cocok
-    if ($username === $admin_username && $password === $admin_password) {
-        // Set session
-        $_SESSION['username'] = $username;
-        header("Location: ../Admin/cetak.php");
-        exit();
-    } else {
-        echo "Username atau Password salah. <a href='login.php'>Coba lagi</a>";
+    $stmt = $conn->prepare("SELECT password FROM users WHERE username = ? AND role = 'admin'");
+    if ($stmt === false) {
+        die("Prepare statement gagal: " . $conn->error);
     }
+
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+        $hashed_password = $row['password'];
+
+        // Verifikasi password
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['username'] = $username;
+            header("Location: ../Admin/cetak.php");
+            exit();
+        } else {
+            echo "Password salah. <a href='login.php'>Coba lagi</a>";
+        }
+    } else {
+        echo "Username tidak ditemukan atau bukan admin. <a href='login.php'>Coba lagi</a>";
+    }
+
+    $stmt->close();
 } else {
     echo "Harap isi Username dan Password. <a href='login.php'>Coba lagi</a>";
 }
+
+$conn->close();
 ?>

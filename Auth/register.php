@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 if (isset($_SESSION['username'])) {
-    header("Location: cetak.php");
+    header("Location: ../Admin/cetak.php");
     exit(); 
 } 
 ?>
@@ -21,7 +21,7 @@ if (isset($_SESSION['username'])) {
             <p>Silakan lengkapi formulir di bawah ini untuk mendaftar</p>
         </div>
         
-        <form class="register-form" action="proses_register.php" method="POST">
+        <form class="register-form" action="cek_register.php" method="POST">
             
             <div class="form-group">
                 <label for="username">Username</label>
