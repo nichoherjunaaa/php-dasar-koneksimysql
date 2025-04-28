@@ -25,5 +25,5 @@ if (isset($_POST['nama']) && isset($_POST['jkel']) && isset($_POST['email']) && 
 }
 
 $conn->close();
-header("location:form_kontak.php");
+header("location:kontak.php");
 ?>

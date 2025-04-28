@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../connection.php"; // koneksi ke database
+include "../connection.php";
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
@@ -19,7 +19,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $row = $result->fetch_assoc();
         $hashed_password = $row['password'];
 
-        // Verifikasi password
         if (password_verify($password, $hashed_password)) {
             $_SESSION['username'] = $username;
             header("Location: ../Admin/cetak.php");

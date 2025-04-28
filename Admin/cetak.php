@@ -1,20 +1,19 @@
 <?php
+// Pengguna harus login untuk mengakses halaman cetak.php
 session_start();
 
-// Cek apakah sudah login sebagai admin
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login.php"); // Kembali ke login jika belum login
+    header("Location: ../Auth/login.php"); 
     exit();
 }
 
-// Include koneksi ke database
+
 include "../connection.php";
 
-// Query ambil data kontak
 $sql = "SELECT * FROM kontak ORDER BY nama";
 $qry = mysqli_query($conn, $sql);
 
-// Cek jika query gagal
+
 if (!$qry) {
     die("Proses cetak gagal: " . mysqli_error($conn));
 }

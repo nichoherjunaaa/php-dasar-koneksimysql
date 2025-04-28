@@ -56,7 +56,7 @@ body {
 }
 
 .register-form input:focus {
-    border-color: #3498db;
+    border-color: rgb(5, 39, 142);
     outline: none;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
@@ -72,7 +72,7 @@ body {
 
 .register-form button {
     width: 100%;
-    background-color: #3498db;
+    background-color: rgb(5, 39, 142);
     color: white;
     border: none;
     padding: 14px;
@@ -84,7 +84,7 @@ body {
 }
 
 .register-form button:hover {
-    background-color: #2980b9;
+    background-color: rgb(5, 39, 142);
 }
 
 .register-footer {
@@ -100,39 +100,11 @@ body {
 }
 
 .login-link a {
-    color: #3498db;
+    color: rgb(5, 39, 142);
     text-decoration: none;
     font-weight: 500;
 }
 
 .login-link a:hover {
     text-decoration: underline;
-}
-
-@media (max-width: 580px) {
-    .register-container {
-        padding: 25px;
-    }
-
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.register-container {
-    animation: fadeIn 0.4s ease-in-out;
 }
